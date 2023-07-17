@@ -1,0 +1,4 @@
+<h{{ .Level }} id="{{ .Anchor | safeURL }}" class="flex flex-row justify-left align-middle">
+    {{ .Text | safeHTML }}
+    {{- partialCached "anchor_heading.html" . -}}
+</h{{ .Level }}>

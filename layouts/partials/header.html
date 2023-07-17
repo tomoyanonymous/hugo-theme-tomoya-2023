@@ -1,0 +1,54 @@
+<div class="navbar bg-base-100 p-10">
+    <div class="flex-1">
+        <a href="{{.Site.BaseURL | absLangURL}}" class="btn btn-ghost rounded-none p-0">
+            <div class="flex flex-col items-start normal-case">
+                <span>Matsuura Tomoya</span>
+                <span>マツウラトモヤ</span>
+                <span>松浦知也</span>
+            </div>
+        </a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu hidden md:visible md:menu-horizontal px-1">
+            {{ $currentPage := . }}
+            {{range .Site.Menus.main}}
+            <li>
+                <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
+                    {{end}}>{{.Name}}</a>
+            </li>
+            {{ end }}
+        </ul>
+
+        <details class="dropdown visible md:hidden px-1">
+            <summary class="btn">
+                Menu
+            </summary>
+            <ul class="dropdown-content menu z-[1] p-2 rounded-box bg-neutral text-neutral-content">
+                {{ $currentPage := . }}
+                {{range .Site.Menus.main}}
+                <li>
+                    <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
+                        {{end}}>{{.Name}}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </details>
+
+
+    </div>
+
+    <div title="Change Language" class="dropdown dropdown-end">
+        <div tabindex="0" class="btn btn-ghost normal-case">
+            {{- partialCached "icons/translate.html" . -}}
+            {{- partialCached "icons/cheveron-down.html" . -}}
+        </div>
+
+        <ul tabindex="0" class="menu menu-sm gap-1 dropdown-content rounded-box bg-base-200 overflow-y-auto">
+            {{ range .Translations }}
+
+            <li><a href="{{ .Permalink }}" class="btn btn-sm">{{ .Language.LanguageName }}</a></li>
+            {{ end }}
+        </ul>
+    </div>
+
+</div>

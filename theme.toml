@@ -1,0 +1,11 @@
+name = "tomoya-2023"
+license = "MIT"
+
+description = "Theme for matsuuratomoya.com Website - updated in 2023"
+homepage = "https://github.com/tomoyanonymous/tomoyanonymous.github.io"
+tags = ["blog", "portfolio"]
+min_version = 0.1
+
+[author]
+  name = "tomoya_nonymous"
+  homepage = "http://matsuuratomoya.com"
