@@ -1,0 +1,21 @@
+<div class="join">
+  <a class="join-item btn 
+  {{ if not .Paginator.HasPrev }}
+    btn-disabled" {{else}} "href=" {{ .Paginator.First.URL }}" {{end}}>«</a>
+  <a class="join-item btn 
+  {{ if not .Paginator.HasPrev }}
+    btn-disabled" {{else}} "href=" {{ .Paginator.Prev.URL }}" {{end}}>‹</a>
+
+  <a class="join-item btn btn-disabled">
+    <span class="text-base-content">
+      {{ .Paginator.PageNumber }}/{{ .Paginator.TotalPages }}
+    </span>
+  </a>
+  <a class="join-item btn 
+  {{ if not .Paginator.HasNext }}
+    btn-disabled" {{else}} "href=" {{ .Paginator.Next.URL }}" {{end}}>›</a>
+  <a class="join-item btn 
+    {{ if not .Paginator.HasNext }}
+      btn-disabled" {{else}} "href=" {{ .Paginator.Last.URL }}" {{end}}>»</a>
+
+</div>

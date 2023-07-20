@@ -4,7 +4,11 @@
         {{ $currentPage := . }}
         {{range .Site.Menus.main}}
 
-            <a href="{{.URL|absLangURL}}" class="link link-hover">{{.Name}}</a>
+        <a href="{{.URL|absLangURL}}" class="link link-hover">{{.Name}}
+            {{if (urls.Parse .URL).IsAbs}}
+            <div class="inline-block h-4 align-middle">{{partialCached "icons/external_link.html" .}}</div>
+            {{end}}
+        </a>
 
         {{ end }}
     </div>

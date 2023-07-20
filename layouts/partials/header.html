@@ -14,7 +14,12 @@
             {{range .Site.Menus.main}}
             <li>
                 <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
-                    {{end}}>{{.Name}}</a>
+                    {{end}}>{{.Name}}
+                    {{if (urls.Parse .URL).IsAbs}}
+                    <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}</div>
+                    {{end}}
+                </a>
+
             </li>
             {{ end }}
         </ul>
@@ -29,6 +34,14 @@
                 <li>
                     <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
                         {{end}}>{{.Name}}</a>
+                    {{if (urls.Parse .URL).IsAbs}}
+                    <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}
+                        {{if (urls.Parse .URL).IsAbs}}
+                        <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}</div>
+                        {{end}}
+                    </div>
+                    {{end}}
+
                 </li>
                 {{ end }}
             </ul>

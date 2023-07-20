@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="p-10 prose lg:prose-xl mx-auto">
+    {{.Content}}
+</div>
+<div class="p-10 grid grid-rows-1 gap-4 justify-items-center max-w-prose mx-auto">
+
+    {{ $paginator := .Paginate (where .Data.Pages "Section" .Section) 10 }}
+    {{ range $paginator.Pages }}
+
+    {{ $thum := "" }}
+    {{if isset .Params "thum"}}
+    {{$thum = .Resources.GetMatch .Params.thum}}
+    {{else if isset .Params "ogpimage"}}
+    {{$thum = .Resources.GetMatch .Params.ogpimage}}
+    {{end}}
+
+
+    <div class="card image-full bg-base-100 w-full">
+        <figure>
+            {{if and (ne $thum "") (ne $thum nil) }}
+            <img src="{{($thum.Resize " 600x webp").Permalink}}" alt="">
+            {{end}}
+        </figure>
+        <div class="card-body">
+            <h2 class="card-title">{{.Title}}</h2>
+            <p class="max-h-6">{{.Date.Format "2006-01-02"}}</p>
+            <div class="grid gap-4 items-end grid-cols-6 h-full">
+                <p class="prose-sm col-span-5 self-start break-all">{{.Summary | plainify | truncate 150}}……</p>
+
+                <a class="btn btn-primary" href="{{.Permalink}}">»</a>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+    {{ partial "pagination.html" . }}
+
+</div>
+{{ end }}

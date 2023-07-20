@@ -1,4 +1,6 @@
 <h{{ .Level }} id="{{ .Anchor | safeURL }}" class="flex flex-row justify-left align-middle">
     {{ .Text | safeHTML }}
-    {{- partialCached "anchor_heading.html" . -}}
+    <a class="header-link" href="#{{ .Anchor | safeURL }}" class="flex flex-row align-middle">
+        {{- partialCached "icons/link.html" . -}}
+    </a>
 </h{{ .Level }}>
