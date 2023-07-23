@@ -1,12 +1,12 @@
-<footer class="footer p-10 bg-base-200 text-base-content">
+<footer class="footer p-10 bg-neutral text-neutral-content w-full">
     <div class="row-span-2">
         <span class="footer-title">Contents</span>
         {{ $currentPage := . }}
         {{range .Site.Menus.main}}
 
-        <a href="{{.URL|absLangURL}}" class="link link-hover">{{.Name}}
+        <a href="{{.URL|absLangURL}}" class="link link-hover" {{if (urls.Parse .URL).IsAbs}} target="_blank" {{end}}>{{.Name}}
             {{if (urls.Parse .URL).IsAbs}}
-            <div class="inline-block h-4 align-middle">{{partialCached "icons/external_link.html" .}}</div>
+            <div class="inline-block h-4 align-middle fill-neutral">{{partialCached "icons/external_link.html" .}}</div>
             {{end}}
         </a>
 
@@ -14,10 +14,10 @@
     </div>
     <div>
         <span class="footer-title">Social</span>
-        <div class="grid grid-flow-col gap-4">
+        <div class="grid grid-flow-col gap-1 align-middle">
             {{range sort $.Site.Params.socials "weight" }}
             {{ $iconPath := printf "icons/%s.html" .name }}
-            <a href="{{.url}}" class="fill-current btn-sm w-full">
+            <a href="{{.url}}" role="button" class="btn border-none bg-neutral fill-neutral-content" target="_blank">
                 {{ if templates.Exists ( printf "partials/%s" $iconPath ) }}
                 {{ partialCached $iconPath . }}
                 {{ else }}

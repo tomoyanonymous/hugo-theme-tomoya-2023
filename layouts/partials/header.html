@@ -1,7 +1,7 @@
 <div class="navbar bg-base-100 p-10">
     <div class="flex-1">
         <a href="{{.Site.BaseURL | absLangURL}}" class="btn btn-ghost rounded-none p-0">
-            <div class="flex flex-col items-start normal-case">
+            <div class="flex flex-col items-start normal-case text-primary">
                 <span>Matsuura Tomoya</span>
                 <span>マツウラトモヤ</span>
                 <span>松浦知也</span>
@@ -9,14 +9,14 @@
         </a>
     </div>
     <div class="flex-none">
-        <ul class="menu hidden md:visible md:menu-horizontal px-1">
+        <ul class="menu hidden md:visible md:menu-horizontal px-1 text-primary">
             {{ $currentPage := . }}
             {{range .Site.Menus.main}}
             <li>
-                <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
-                    {{end}}>{{.Name}}
+                <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60" {{end}}
+                    {{if (urls.Parse .URL).IsAbs}}target="_blank" {{end}}>{{.Name}}
                     {{if (urls.Parse .URL).IsAbs}}
-                    <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}</div>
+                    <div class="inline-block h-4 fill-primary">{{partialCached "icons/external_link.html" .}}</div>
                     {{end}}
                 </a>
 
@@ -28,20 +28,17 @@
             <summary class="btn">
                 Menu
             </summary>
-            <ul class="dropdown-content menu z-[1] p-2 rounded-box bg-neutral text-neutral-content">
+            <ul class="dropdown-content menu z-[25] p-2 rounded-box bg-neutral text-neutral-content">
                 {{ $currentPage := . }}
                 {{range .Site.Menus.main}}
                 <li>
-                    <a href="{{.URL|absLangURL}}" {{if $currentPage.IsMenuCurrent "main" . }} class="opacity-60"
-                        {{end}}>{{.Name}}</a>
-                    {{if (urls.Parse .URL).IsAbs}}
-                    <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}
+                    <a href="{{.URL|absLangURL}}" class="fill-current-content hover:fill-accent hover:text-accent-content {{if $currentPage.IsMenuCurrent "main" . }} opacity-60{{end}}"{{if (urls.Parse .URL).IsAbs}} target="_blank" {{end}}>{{.Name}}
                         {{if (urls.Parse .URL).IsAbs}}
-                        <div class="inline-block h-4">{{partialCached "icons/external_link.html" .}}</div>
+                        <div class="inline-block h-4 fill-current">{{partialCached "icons/external_link.html"
+                            .}}
+                        </div>
                         {{end}}
-                    </div>
-                    {{end}}
-
+                    </a>
                 </li>
                 {{ end }}
             </ul>
@@ -50,18 +47,19 @@
 
     </div>
 
-    <div title="Change Language" class="dropdown dropdown-end">
-        <div tabindex="0" class="btn btn-ghost normal-case">
+    <div class="dropdown dropdown-end text-primary">
+        <div title="{{if eq (len .Translations) 0 }}This article has no translated versions.{{else}}Change Language{{end}}" tabindex="0" class="btn btn-ghost {{if eq (len .Translations) 0 }} btn-disabled{{end}} normal-case">
             {{- partialCached "icons/translate.html" . -}}
             {{- partialCached "icons/cheveron-down.html" . -}}
         </div>
-
-        <ul tabindex="0" class="menu menu-sm gap-1 dropdown-content rounded-box bg-base-200 overflow-y-auto">
+        {{if gt (len .Translations) 0 }} 
+        <ul tabindex="0" class="menu menu-sm gap-1 dropdown-content rounded-box bg-base-200 overflow-y-auto ">
             {{ range .Translations }}
-
             <li><a href="{{ .Permalink }}" class="btn btn-sm">{{ .Language.LanguageName }}</a></li>
             {{ end }}
         </ul>
+        {{end}}
+        
     </div>
 
 </div>

@@ -1,0 +1,69 @@
+{{ define "main" }}
+<div class="p-10 prose lg:prose-xl mx-auto">
+    {{.Content}}
+</div>
+
+
+
+
+{{ range .Pages.GroupByParam "category" }}
+<div class="px-10 prose lg:prose-xl mx-auto text-center">
+    <h2 id="{{.Key}}">
+        {{if eq .Key "artwork"}}
+        Personal Works
+        {{else if eq .Key "clientwork" }}
+        Commision Works
+        {{else}}
+        {{ .Key }}
+        {{end}}</h2>
+</div>
+<div class="p-10 flex flex-row flex-wrap grid-flow-row-dense gap-4 justify-center">
+    {{ range .Pages }}
+    
+    <a href="{{ .RelPermalink }}" class="card bg-base-100 w-full sm:w-80 hover:drop-shadow-lg transition-all ease-in-out mb-4 flex flex-col justify-between">
+        
+        {{ $thum := "" }}
+        {{if isset .Params "thum"}}
+        {{$thum = .Resources.GetMatch .Params.thum}}
+        {{else if isset .Params "ogpimage"}}
+        {{$thum = .Resources.GetMatch .Params.ogpimage}}
+        {{end}}
+        <figure class="aspect-[4/3]" style="background-color:{{index $thum.Colors 0}};">
+            {{if and (ne $thum "") (ne $thum nil) }}
+            <img src=" {{($thum.Resize " 600x webp" ).Permalink}}" alt="" class="max-w-full max-h-full">
+            {{end}}
+        </figure>
+        <div class="p-4 grid grid-rows-4 bg-neutral text-neutral-content rounded-b-xl">
+            <p class="row-span-3 font-bold">{{ .Title }}</p>
+            <p class="text-neutral-content/50">{{ .Date.Format "2006" }}</p>
+        </div>
+
+
+    </a>
+    {{ end }}
+
+</div>
+{{ end }}
+{{/*
+<div class="card image-full bg-base-100 w-full">
+    <figure>
+        {{if and (ne $thum "") (ne $thum nil) }}
+        <img src="{{($thum.Resize " 600x webp").Permalink}}" alt="">
+        {{end}}
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title">{{.Title}}</h2>
+        <p class="max-h-6">{{.Date.Format "2006-01-02"}}</p>
+        <div class="grid gap-4 items-end grid-cols-6 h-full">
+            <p class="prose-sm col-span-5 self-start break-all">{{.Summary | plainify |safeHTML| truncate 150}}……
+            </p>
+
+            <a class="btn btn-primary" href="{{.Permalink}}">»</a>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ partial "pagination.html" . }}
+*/}}
+
+{{ end }}

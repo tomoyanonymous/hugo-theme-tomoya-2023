@@ -1,7 +1,102 @@
 {{define "main"}}
-<div id="inner">
-  <div class="markdown">
-      {{ .Content}}
+{{ $num_pages := 10}}
+{{ $pages := first $num_pages (where site.RegularPages "Type" "in" "works") }}
+<div class="carousel  w-full overflow-y-clip max-h-[32rem]">
+  {{ range $pages }}
+  {{ $thum := "" }}
+  {{if isset .Params "thum"}}
+  {{$thum = .Resources.GetMatch .Params.thum}}
+  {{else if isset .Params "ogpimage"}}
+  {{$thum = .Resources.GetMatch .Params.ogpimage}}
+  {{end}}
+  {{$color := index $thum.Colors 0}}
+  <div id="{{.Title}}" class="carousel-item w-full justify-center items-center relative"
+    style="background-color:{{$color}};">
+
+    <img src="{{$thum.Permalink}}" alt="" class="max-w-full max-h-full" loading="lazy" />
+    <a href="{{.Permalink}}" class="btn btn-xs glass absolute bottom-1 right-1" style="color:{{$color}};"><span
+        class="invert">{{.Title}}({{.Date.Format "2006"}})</span></a>
+  </div>
+  {{ end }}
+  a
+</div>
+
+<div class="flex justify-center w-full py-2 gap-2">
+  {{ range $pages }}
+  <a href="#{{.Title}}" class="btn btn-circle btn-xs">・</a>
+  {{end}}
+</div>
+<div class="flex justify-center w-full py-2">
+  <a href='{{"works" |relLangURL}}' class="btn btn-primaty">
+    See more works
+  </a>
+</div>
+
+<div class="flex justify-center w-full px-10 py-2">
+  <div class="prose lg:prose-xl w-full">
+    <h2>Latest Updates</h2>
+    {{ range first 5 (where site.RegularPages "Type" "in" "info" ) }}
+    <div>
+      <a href="{{.RelPermalink | relLangURL}}">
+        <p>{{.Date.Format "2006-01-02"}} : {{.Title}}</p>
+      </a>
+    </div>
+    {{ end }}
   </div>
 </div>
+<div class="flex justify-center w-full py-2 mb-4">
+  <a class="btn" href='{{"info" |relLangURL}}'>
+    See more news
+  </a>
+</div>
+
+
+<div class="flex justify-center">
+<div class="w-[65ch] lg:prose-xl card lg:card-side shadow-lg">
+  {{ with .Site.GetPage "/about" }}
+  {{if .Params.shortprofile}}
+  {{ $icon := ((.Resources.GetMatch "profile2.jpg").Fill "400x400 q90 webp") }}
+  <figure class="not-prose lg:mb-0">
+    <img src="{{$icon.RelPermalink}}" class="not-prose" alt="">
+  </figure>
+  <div class="card-body lg:w-3/4 not-prose">
+    <h2 class="text-md font-bold not-prose">{{.Params.name}}</h2>
+    <p class="text-sm">
+      {{.Params.shortprofile}}
+    </p>
+  </div>
+  {{end}}
+  {{end}}
+</div>
+{{/* <a href="{{" about"|relLangURL}}"></a> */}}
+</div>
+
+<div class="flex justify-center w-full py-4">
+  <a class="btn" href='{{"about" |relLangURL}}'>
+    See full profile/CV
+  </a>
+</div>
+
+
+<div class="flex justify-center w-full px-10 py-2">
+  <div class="prose lg:prose-xl w-full">
+    <h2>Latest Blogs</h2>
+    {{ range first 5 (where site.RegularPages "Type" "in" "blog" ) }}
+    <div>
+      <a href="{{.RelPermalink | relLangURL}}">
+        <p>{{.Date.Format "2006-01-02"}} : {{.Title}}</p>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<div class="flex justify-center w-full py-4">
+  <a class="btn" href='{{"info" |relLangURL}}'>
+    See more blogs
+  </a>
+</div>
+
+
+
 {{end}}

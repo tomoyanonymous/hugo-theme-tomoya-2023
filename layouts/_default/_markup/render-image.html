@@ -5,19 +5,22 @@
     {{ if eq $img.MediaType.MainType "image"}}
     {{$src := .Destination | safeURL }}
 
-    {{ if and (ne $img.MediaType.SubType "svg") (ne $img.MediaType.SubType "gif")}}
-    <a href="{{ $src }}">
-        {{ if gt (float $img.Width) 640 }}
-        {{$thumbnail := $img.Resize "640x webp" }}
-        {{$src = $thumbnail.RelPermalink}}
-        {{ end }}
-        <img src="{{$src}}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} class="w-full aspect-auto"/>
+    {{ if and (ne $img.MediaType.SubType "svg") (ne $img.MediaType.SubType "gif") (gt (float $img.Width) 960 )}}
+    <a href="{{ $src }}" class="transition-all ease-in-out hover:drop-shadow-lg ">
+
+        {{$small := $img.Resize "640x webp" }}
+        {{$mid := $img.Resize "960x webp" }}
+
+        <img srcset="
+        {{$small.RelPermalink}} 640w,
+        {{$mid.RelPermalink}} 960w" src="{{$mid.RelPermalink}}" sizes="(max-width:960px) 100vw, 960px"
+            alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} class="w-full aspect-auto" />
 
     </a>
     {{ else }}
 
-    <a href="{{$src}}">
-        <img src="{{$src}}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} />
+    <a href="{{$src}}" class="transition-all ease-in-out hover:drop-shadow-lg ">
+        <img src="{{$src}}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} class="w-full aspect-auto" />
     </a>
 
     {{ end }}

@@ -1,0 +1,18 @@
+
+<link rel="canonical" href="{{.Permalink}}">
+<meta http-equiv="content-language" content="{{.Lang}}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="keyword" content="松浦知也,Matsuura Tomoya,{{with .Keywords}}{{.}}{{end}}">
+{{- $description:= $.Site.Params.description -}}
+{{- if .Description -}}
+{{- $description = .Description -}}
+{{- else if .Summary -}}
+{{- $description = .Summary -}}
+{{- end -}}
+<meta name="description" content="{{$description}}">
+
+{{- partial "twitter-cards.html" . -}}
+{{- partial "opengraph.html" . -}}
+
+{{- with .NextInSection -}}<link rel="next" href="{{.Permalink}}">{{- end -}}
+{{- with .PrevInSection -}}<link rel="prev" href="{{.Permalink}}">{{- end -}}

@@ -1,0 +1,41 @@
+{{ define "head" }}
+{{- partialCached "head_default.html" . -}}
+{{- partial "meta.html" . -}}
+{{- partial "research-meta.html" . -}}
+<title>{{with .Title}}{{ . }} - {{end}}{{ .Site.Title }}</title>
+{{ end }}
+
+{{ define "main" }}
+
+{{ partial "single-hero.html" .}}
+{{ partial "single-body.html" .}}
+
+<div class="prose lg:prose-xl mx-auto py-10 gap-4">
+
+    <h2>Authors</h2>
+
+    <p> {{delimit .Params.authors ", "}}</p>
+
+
+    {{ with .Params.pdf_url }}
+    <h2>PDF</h2>
+    <a href="{{.}}" class="btn btn-accent">Download PDF</a>
+    {{end}}
+
+    <h2>Cite This Article</h2>
+
+    {{ with .Params.bibtex }}
+    <details tabindex="0" class="collapse border border-base-300 bg-base-200  collapse-arrow ">
+        <summary class="collapse-title text-xl font-medium">
+            Bibtex
+        </summary>
+        <div class="collapse-content p-4 text-sm font-mono bg-neutral text-neutral-content">
+            {{.}}
+        </div>
+    </details>
+
+    {{end}}
+</div>
+{{ partial "pagination-single.html" .}}
+
+{{ end }}

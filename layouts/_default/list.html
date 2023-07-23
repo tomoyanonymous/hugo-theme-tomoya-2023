@@ -25,7 +25,7 @@
             <h2 class="card-title">{{.Title}}</h2>
             <p class="max-h-6">{{.Date.Format "2006-01-02"}}</p>
             <div class="grid gap-4 items-end grid-cols-6 h-full">
-                <p class="prose-sm col-span-5 self-start break-all">{{.Summary | plainify | truncate 150}}……</p>
+                <p class="prose-sm col-span-5 self-start break-all">{{.Summary | plainify |safeHTML| truncate 150}}……</p>
 
                 <a class="btn btn-primary" href="{{.Permalink}}">»</a>
             </div>

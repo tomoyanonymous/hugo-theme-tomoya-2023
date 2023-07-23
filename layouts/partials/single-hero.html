@@ -1,0 +1,19 @@
+{{$header:=""}}
+
+{{with .Params.ogpimage}}
+{{$header = .}}
+{{end}}
+{{with .Params.thum}}
+{{$header = .}}
+{{end}}
+<div class="hero aspect-[1200/630]" {{if ne $header "" }} style="background-image: url({{$header}});" {{end}}>
+
+    <div class="hero-overlay backdrop-blur"></div>
+    <div class="z-[24] p-10 text-neutral-content self-end my-4 prose lg:prose-xl">
+        <h1 class="mb-5 text-5xl">
+            <span class="font-bold text-neutral-content leading-normal">{{.Title}}</span>
+        </h1>
+        <p class="mb-5">published:     {{.Date.Format "2006-01-02"}}</p>
+        <p class="mb-5">last modified: {{.Lastmod.Format "2006-01-02"}}</p>
+    </div>
+</div>

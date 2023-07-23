@@ -1,0 +1,26 @@
+{{define "main" }}
+<div class="p-10 prose lg:prose-xl mx-auto gap-4">
+
+    {{.Content}}
+
+    {{$categories := (slice "thesis" "journals" "proceedings" "presentation")}}
+    {{$pages := .Pages}}
+    {{range $categories}}
+    {{$mypages := (where $pages ".Params.category" .)}}
+    {{ if gt (len $mypages) 0}}
+    <h2 class="category">{{humanize .}}</h2>
+    {{range $mypages}}
+    {{ partial "research-card.html" .}}
+    {{end}}
+    {{end}}
+
+    {{end}}
+    {{$others := (where $pages ".Params.category" "not in" $categories)}}
+    {{ if gt (len $others) 0}}
+    <h2 class="category">Others (Reviews / Informal Research / Random Writings)</h2>
+    {{range $others}}
+    {{ partial "research-card.html" .}}
+    {{end}}
+    {{end}}
+</div>
+{{end}}

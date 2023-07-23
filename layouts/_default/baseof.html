@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="{{.Lang}}" prefix="og: http://ogp.me/ns#">
+<html lang="{{.Lang}}" prefix="og: http://ogp.me/ns#">
   <head>
     {{ block "head" .}}
-    {{- partial "head_default.html" . -}}
+    {{- partialCached "head_default.html" . -}}
     {{- partial "meta.html" . -}}
     <title>{{with .Title}}{{ . }} - {{end}}{{ .Site.Title }}</title>
     {{ end }}
@@ -10,13 +10,8 @@
 <body>
   <div class="bg-base-100 text-base-content">
     {{ partial "header.html" . }}
-
     {{ block "main" . }}
-        <div id="inner">
-            <div class="markdown">
-                {{ .Content}}
-            </div>
-        </div>
+      {{ partial "single-body.html" .}}
     {{ end }}
     {{ partialCached  "footer.html" . }}
   </div>

@@ -1,0 +1,26 @@
+<div class="card image-full bg-base-100 w-full mb-4 not-prose">
+    {{ $thum := "" }}
+    {{if isset .Params "thum"}}
+    {{$thum = .Resources.GetMatch .Params.thum}}
+    {{else if isset .Params "ogpimage"}}
+    {{$thum = .Resources.GetMatch .Params.ogpimage}}
+    {{end}}
+    {{if and (ne $thum "") (ne $thum nil) }}
+    <figure style="background-color:{{index $thum.Colors 0}};"><img src=" {{($thum.Resize " 600x webp" ).Permalink}}"
+            alt="" class="max-w-full max-h-full"></figure>
+    {{end}}
+
+    <div class="card-body">
+        <b><span class="title">{{ .Title }}</span></b>
+        <span class="authors">{{delimit .Params.authors ", "}}</span>
+        <span class="journal">{{with .Params.journal_title}}{{.}}{{else}}{{.Params.conference_title}}{{end}}</span>
+        <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-start gap-2 items-center">
+                <div class="text-neutral-content/50">{{.PublishDate.Format "2006-01-02"}}</div>
+                {{if (eq .Params.reviewed true)}}<div class="badge badge-outline">Reviewed</div>{{end}}
+                {{if .Params.pdf_url}}<div class="badge badge-outline">PDF</div>{{end}}
+            </div>
+            <a class="btn btn-primary" href="{{.RelPermalink}}">»</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{{$max_chars:=25}}
+<div class="join grid grid-cols-7 gap-0 justify-center justify-items-center p-10">
+
+    <a role="button" href="{{ if .NextInSection }}
+      {{.NextInSection.RelPermalink }}
+      {{ end }}" class="join-item col-span-3  p-2  w-full btn h-[4rem] {{if not .NextInSection}}btn-disabled{{ end }}">
+        {{ if .NextInSection }}
+        <div class="flex flex-col items-start">
+            <p>{{.NextInSection.Title | truncate $max_chars }}</p>
+            <p class="text-xs text-base-content/50">{{.NextInSection.Date.Format "2006-01-02"}}</p>
+        </div>
+        {{ end }}
+    </a>
+    {{range first 1 .Ancestors }}
+    <a role="button" href="{{.RelPermalink}}" class="join-item  btn  h-[4rem] btn-neutral col-span-1 justify-self-stretch p-2">
+        {{ partialCached "icons/back_to_index.html" .}}
+    </a>
+    {{end}}
+    <a role="button" href="{{ if .PrevInSection }}
+       {{ .PrevInSection.RelPermalink }}
+      {{ end }}" class="join-item col-span-3 p-2 w-full btn  h-[4rem] {{if not .PrevInSection }}btn-disabled{{ end }}">
+        {{ if .PrevInSection }}
+        <div class="flex flex-col items-start">
+            <p> {{ .PrevInSection.Title | truncate $max_chars }}</p>
+            <p class="text-xs text-base-content/50">{{.PrevInSection.Date.Format "2006-01-02"}}</p>
+        </div>
+        {{ end }}
+    </a>
+</div>

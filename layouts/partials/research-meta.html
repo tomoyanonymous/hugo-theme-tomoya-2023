@@ -1,0 +1,54 @@
+
+<meta name="citation_title" content="{{htmlEscape .Title}}">
+{{range .Params.authors}}
+<meta name="citation_author" content="{{.}}">
+{{end}}
+<meta name="citation_publication_date" content="{{.PublishDate.Format "2006/01/02" }}">
+<meta name="citation_online_date" content="{{.Date.Format "2006/01/02" }}">
+{{with .Params.publisher}}
+<meta name="citation_publisher" content="{{.}}">
+{{end}}
+{{with .Params.isbn}}
+<meta name="citation_isbn" content="{{.}}">
+{{end}}
+{{with .Params.issn}}
+<meta name="citation_issn" content="{{.}}">
+{{end}}
+{{with .Params.doi}}
+<meta name="citation_doi" content="{{.}}">
+{{end}}
+
+{{with .Params.journal_title}}
+<meta name="citation_journal_title" content="{{htmlEscape .}}">
+{{end}}
+{{with .Params.volume}}
+<meta name="citation_volume" content="{{.}}">
+{{end}}
+{{with .Params.issue}}
+<meta name="citation_issue" content="{{.}}">
+{{end}}
+
+{{with .Params.conference_title}}
+<meta name="citation_conference_title" content="{{htmlEscape .}}">
+{{end}}
+
+{{with .Params.firstpage}}
+<meta name="citation_firstpage" content="{{.}}">
+{{end}}
+{{with .Params.lastpage}}
+<meta name="citation_lastpage" content="{{.}}">
+{{end}}
+
+
+<meta name="citation_abstract_html_url" content="{{.Permalink}}">
+{{with .Params.abstract}}
+<meta name="abstract" content="{{.}}">
+{{end}}
+
+{{with .Params.fulltext_html_url}}
+<meta name="citation_fulltext_html_url" content="{{.}}">
+{{end}}
+
+{{with .Params.pdf_url}}
+<meta name="citation_pdf_url" content="{{.}}">
+{{end}}
