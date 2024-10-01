@@ -3,6 +3,9 @@
   <head>
     {{ block "head" .}}
     {{- partialCached "head_default.html" . -}}
+    {{ if .Param "math" }}
+      {{ partialCached "math.html" . }}
+    {{ end }}
     {{- partial "meta.html" . -}}
     <title>{{with .Title}}{{ . }} - {{end}}{{ .Site.Title }}</title>
     {{ end }}

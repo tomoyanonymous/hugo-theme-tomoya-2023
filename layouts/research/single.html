@@ -2,6 +2,9 @@
 {{- partialCached "head_default.html" . -}}
 {{- partial "meta.html" . -}}
 {{- partial "research-meta.html" . -}}
+{{ if .Param "math" }}
+{{ partialCached "math.html" . }}
+{{ end }}
 <title>{{with .Title}}{{ . }} - {{end}}{{ .Site.Title }}</title>
 {{ end }}
 
