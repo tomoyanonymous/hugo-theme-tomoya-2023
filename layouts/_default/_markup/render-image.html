@@ -1,9 +1,9 @@
 {{$img := .Page.Resources.GetMatch .Destination }}
+{{$src := .Destination | safeURL }}
 
 {{ if $img}}
 <p style="text-align:center;">
     {{ if eq $img.MediaType.MainType "image"}}
-    {{$src := .Destination | safeURL }}
 
     {{ if and (ne $img.MediaType.SubType "svg") (ne $img.MediaType.SubType "gif") (gt (float $img.Width) 960 )}}
     <a href="{{ $src }}" class="transition-all ease-in-out hover:drop-shadow-lg ">
@@ -19,8 +19,8 @@
     </a>
     {{ else }}
 
-    <a href="{{$src}}" class="transition-all ease-in-out hover:drop-shadow-lg ">
-        <img src="{{$src}}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} class="w-full aspect-auto" />
+    <a href="{{$img.RelPermalink}}" class="transition-all ease-in-out hover:drop-shadow-lg ">
+        <img src="{{$img.RelPermalink}}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}" {{ end }} class="w-full aspect-auto" />
     </a>
 
     {{ end }}
@@ -29,5 +29,4 @@
 
 </p>
 {{else}}
-
 {{end}}
