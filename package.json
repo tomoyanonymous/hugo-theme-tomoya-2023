@@ -1,19 +1,31 @@
 {
-  "name": "tomoya-2023",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
-  "license": "ISC",
+  "comments": {
+    "dependencies": {
+      "@tailwindcss/typography": "project",
+      "autoprefixer": "project",
+      "daisyui": "project",
+      "postcss": "project",
+      "postcss-import": "project",
+      "tailwindcss": "project"
+    },
+    "devDependencies": {}
+  },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.2.1",
     "postcss": "^8.4.26",
     "postcss-import": "^15.1.0",
-    "tailwindcss": "^3.3.3",
-    "@tailwindcss/typography": "^0.5.9"
-  }
+    "tailwindcss": "^3.3.3"
+  },
+  "description": "",
+  "devDependencies": {},
+  "license": "ISC",
+  "main": "index.js",
+  "name": "tomoya-2023",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
 }
