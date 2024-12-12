@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $styles := resources.Get "css/input.css"| css.PostCSS (dict "config" "./assets/css/postcss.config.js") -}}
+{{- $styles := resources.Get "css/input.css"| PostCSS -}}
 {{- if hugo.IsServer }}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
 {{ else }}

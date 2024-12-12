@@ -20,7 +20,9 @@
     "tailwindcss": "^3.3.3"
   },
   "description": "",
-  "devDependencies": {},
+  "devDependencies": {
+    "postcss-cli": "^11.0.0"
+  },
   "license": "ISC",
   "main": "index.js",
   "name": "tomoya-2023",
