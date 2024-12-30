@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $styles := resources.Get "css/input.css"| PostCSS -}}
+{{ $opts := dict "use" "autoprefixer tailwindcss" }}
+{{- $styles := resources.Get "css/input.css"| css.PostCSS $opts -}}
 {{- if hugo.IsServer }}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
 {{ else }}
