@@ -5,3 +5,7 @@
 .footer-title {
     opacity:inherit;
 }
+
+a {
+    word-wrap: break-word;
+}
