@@ -1,13 +1,13 @@
-@import "tailwindcss" ;
-@plugin "daisyui"{
-    logs: false;
-    themes:tomoya --default, dark --prefersdark;
-}
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "hugo_stats.json";
+@plugin "daisyui";
 @plugin "daisyui/theme"{
     name:"tomoya";
     default: true; /* set as default */
     prefersdark: false; 
-    --color-base100: #d7eff7;
+    --color-base: oklch(0.937 0.0275 219.77);
+    --color-base-100: oklch(0.937 0.0275 219.77);
     --color-primary: #207e8f;
     --color-secondary: #02B2D4;
     --color-accent: #FA8F2D;
@@ -16,7 +16,7 @@
     --color-success: #36d399;
     --color-warning: #fbbd23;
     --color-error: #f87272;
-    --color-base-content: #d7eff7;
+    /* --color-base-content: oklch(0.937 0.0275 219.77);
     --color-primary-content: #207e8f;
     --color-secondary-content: #02B2D4;
     --color-accent-content: #FA8F2D;
@@ -24,7 +24,7 @@
     --color-info-content: #3abff8;
     --color-success-content: #36d399;
     --color-warning-content: #fbbd23;
-    --color-error-content: #f87272;
+    --color-error-content: #f87272; */
 }
 
 .footer-title {

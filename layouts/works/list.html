@@ -20,7 +20,7 @@
 <div class="p-10 flex flex-row flex-wrap grid-flow-row-dense gap-4 justify-center">
     {{ range .Pages }}
     
-    <a href="{{ .RelPermalink }}" class="card bg-base-100 w-full sm:w-80 hover:drop-shadow-lg transition-all ease-in-out mb-4 flex flex-col justify-between">
+    <a href="{{ .RelPermalink }}" class="card bg-neutral w-full sm:w-80 hover:drop-shadow-lg transition-all ease-in-out mb-4 flex flex-col justify-between">
         
         {{ $thum := "" }}
         {{if isset .Params "thum"}}
