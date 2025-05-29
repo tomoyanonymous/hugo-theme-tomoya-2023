@@ -2,31 +2,28 @@
   "author": "",
   "comments": {
     "dependencies": {
+      "@tailwindcss/cli": "project",
       "@tailwindcss/typography": "project",
-      "autoprefixer": "project",
       "daisyui": "project",
       "postcss": "project",
-      "postcss-import": "project",
       "tailwindcss": "project"
     },
     "devDependencies": {}
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/cli": "^4.1.8",
     "@tailwindcss/typography": "^0.5.9",
     "daisyui": "^5.0.42",
-    "postcss": "^8.5.4"
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8"
   },
   "description": "",
+  "devDependencies": {},
   "license": "ISC",
   "main": "index.js",
   "name": "tomoya-2023",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0",
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.1.8",
-    "tailwindcss": "^4.1.8"
-  }
+  "version": "1.0.0"
 }
