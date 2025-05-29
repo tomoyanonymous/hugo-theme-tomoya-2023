@@ -1,13 +1,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $styles := resources.Get "css/input.css"| PostCSS -}}
-{{- if hugo.IsServer }}
-{{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
-{{ else }}
-{{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
-{{ end -}}
+{{- $styles := resources.Get "css/input.css"| css.TailwindCSS (dict "minify" true)  -}}
 
-<link rel="stylesheet" href="{{ $styles.Permalink }}">
+{{ with $styles }}
+    {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ else }}
+    {{ with . | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+    {{ end }}
+{{ end }}
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
 {{ template "_internal/google_analytics.html" . }}

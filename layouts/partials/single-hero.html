@@ -1,7 +1,9 @@
 {{$header:=""}}
 
 {{with .Params.ogpimage}}
-{{$header = .}}
+{{- $images := $.Resources.ByType "image" -}}
+{{- $featured := $images.GetMatch . -}}
+{{$header = $featured.RelPermalink}}
 {{end}}
 {{with .Params.thum}}
 {{$header = .}}
