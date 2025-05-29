@@ -12,11 +12,10 @@
     "devDependencies": {}
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.9",
     "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/typography": "^0.5.9",
     "daisyui": "^5.0.42",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8"
+    "postcss": "^8.5.4"
   },
   "description": "",
   "license": "ISC",
@@ -25,6 +24,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0"
-
+  "version": "1.0.0",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  }
 }

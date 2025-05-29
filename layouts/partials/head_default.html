@@ -1,12 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{ $options := dict "inlineImports" true "config" "./assets/postcss.config.mjs" }}
 
-{{- $styles := resources.Get "css/input.css"| css.PostCSS $options -}}
+{{ with (templates.Defer (dict "key" "global")) }}
+{{ $opts := dict
+        "inlineImports" true
+        "optimize" (not hugo.IsDevelopment)}}
+{{- $styles := resources.Get "css/input.css"| css.TailwindCSS $opts -}}
 {{- if hugo.IsServer }}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
 {{ else }}
-{{ $styles = $styles | minify |fingerprint| resources.PostProcess }}
+{{ $styles = $styles | minify | fingerprint }}
 {{ end -}}
 
 {{ with $styles }}
@@ -15,6 +18,8 @@
     {{ else }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
     {{ end }}
+{{ end }}
+
 {{ end }}
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 

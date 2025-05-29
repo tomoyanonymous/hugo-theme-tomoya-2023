@@ -8,10 +8,10 @@
 {{with .Params.thum}}
 {{$header = .}}
 {{end}}
-<div class="hero aspect-[1200/630]" {{if ne $header "" }} style="background-image: url({{$header}});" {{end}}>
+<div class="hero aspect-1200/630" {{if ne $header "" }} style="background-image: url({{$header}});" {{end}}>
 
     <div class="hero-overlay backdrop-blur"></div>
-    <div class="z-[24] p-10 text-neutral-content self-end my-4 prose lg:prose-xl">
+    <div class="z-24 p-10 text-neutral-content self-end my-4 prose lg:prose-xl">
         <h1 class="mb-5 text-5xl">
             <span class="font-bold text-neutral-content leading-normal">{{.Title}}</span>
         </h1>

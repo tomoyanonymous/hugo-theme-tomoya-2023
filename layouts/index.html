@@ -1,7 +1,7 @@
 {{define "main"}}
 {{ $num_pages := 10}}
 {{ $pages := first $num_pages (where site.RegularPages "Type" "in" "works") }}
-<div class="carousel  w-full overflow-y-clip max-h-[32rem]">
+<div class="carousel  w-full overflow-y-clip max-h-128">
   {{ range $pages }}
   {{ $thum := "" }}
   {{if isset .Params "thum"}}

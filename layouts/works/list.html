@@ -28,7 +28,7 @@
         {{else if isset .Params "ogpimage"}}
         {{$thum = .Resources.GetMatch .Params.ogpimage}}
         {{end}}
-        <figure class="aspect-[4/3]" style="background-color:{{index $thum.Colors 0}};">
+        <figure class="aspect-4/3" style="background-color:{{index $thum.Colors 0}};">
             {{if and (ne $thum "") (ne $thum nil) }}
             <img src=" {{($thum.Resize " 600x webp" ).Permalink}}" alt="" class="max-w-full max-h-full">
             {{end}}
