@@ -2,6 +2,7 @@ module.exports = {
   mode: 'jit',
   darkMode: 'class',
   content: [
+    './hugo_stats.json',
     "./themes/**/layouts/**/*.html",
     "./content/**/layouts/**/*.html",
     "./layouts/**/*.html",

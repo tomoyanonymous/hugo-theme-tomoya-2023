@@ -1,6 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $styles := resources.Get "css/input.css"| css.TailwindCSS (dict "minify" true)  -}}
+{{ $options := dict "inlineImports" true "config" "./assets/postcss.config.js" }}
+
+{{- $styles := resources.Get "css/input.css"| css.PostCSS $options -}}
+{{- if hugo.IsServer }}
+{{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
+{{ else }}
+{{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ end -}}
 
 {{ with $styles }}
     {{ if hugo.IsDevelopment }}
