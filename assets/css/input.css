@@ -1,6 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui"{
+    logs: false;
+    themes:tomoya --default, dark --preferdark;
+}
+@plugin "daisyui/theme" {
+    name:"tomoya";
+    default: true; /* set as default */
+    prefersdark: false; 
+    --color-primary: #207e8f;
+    --color-secondary: #02B2D4;
+    --color-accent: #FA8F2D;
+    --color-neutral: #06262B;
+    --color-base100: #d7eff7;
+    --color-info: #3abff8;
+    --color-success: #36d399;
+    --color-warning: #fbbd23;
+    --color-error: #f87272;
+}
+
 .footer-title {
     opacity:inherit;
 }

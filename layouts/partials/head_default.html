@@ -1,14 +1,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{ $options := dict "inlineImports" true "config" "./assets/postcss.config.js" }}
+{{ $options := dict "inlineImports" true "config" "./assets/postcss.config.mjs" }}
 
-{{- $styles := resources.Get "css/input.css" -}}
+{{- $styles := resources.Get "css/input.css"| css.PostCSS $options -}}
 {{- if hugo.IsServer }}
-{{- $styles := $styles | css.PostCSS $options -}}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
 {{ else }}
-
-{{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ $styles = $styles | minify |fingerprint| resources.PostProcess }}
 {{ end -}}
 
 {{ with $styles }}
