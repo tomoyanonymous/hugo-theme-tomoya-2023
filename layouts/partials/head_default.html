@@ -2,10 +2,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{ $options := dict "inlineImports" true "config" "./assets/postcss.config.js" }}
 
-{{- $styles := resources.Get "css/input.css"| css.PostCSS $options -}}
+{{- $styles := resources.Get "css/input.css" -}}
 {{- if hugo.IsServer }}
+{{- $styles := $styles | css.PostCSS $options -}}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "css/styles.dev.%v.css" now.UnixMilli) .}}
 {{ else }}
+
 {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
 {{ end -}}
 
@@ -13,9 +15,7 @@
     {{ if hugo.IsDevelopment }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
     {{ else }}
-    {{ with . | fingerprint }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{ end }}
     {{ end }}
 {{ end }}
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
