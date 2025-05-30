@@ -7,10 +7,8 @@ https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/twit
 <meta name="twitter:image" content="{{ index . 0 | absURL }}"/>
 {{ else -}}
 {{- $images := $.Resources.ByType "image" -}}
-{{- $featured := $images.GetMatch "*feature*" -}}
-{{- if not $featured }}{{ $featured = $images.GetMatch .Params.ogpimage }}{{ end -}} {{/*  added  */}}
-{{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
-
+{{- $featured := $images.GetMatch .Params.ogpimage -}}
+{{- if not $featured}}{{- $featured = $images.GetMatch "{,*feature*,*cover*,*thumbnail*}" -}} {{end -}}
 {{- with $featured -}}
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="{{ $featured.Permalink }}"/>
