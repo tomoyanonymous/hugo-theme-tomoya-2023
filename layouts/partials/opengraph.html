@@ -13,7 +13,7 @@ https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/open
 {{- $featured := $images.GetMatch .Params.ogpimage -}}
 {{- if not $featured}}{{- $featured = $images.GetMatch "{,*feature*,*cover*,*thumbnail*}" -}} {{end -}}
 {{- with $featured -}}
-<meta property="og:image" content="{{ $featured.RelPermalink }}"/>
+<meta property="og:image" content="{{ $featured.Permalink }}"/>
 {{- else -}}
 {{- with $.Site.Params.images }}<meta property="og:image" content="{{ index . 0 | absURL }}"/>{{ end -}}
 {{- end -}}
