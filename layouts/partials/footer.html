@@ -17,7 +17,7 @@
         <div class="grid grid-flow-col gap-1 align-middle">
             {{range sort $.Site.Params.socials "weight" }}
             {{ $iconPath := printf "icons/%s.html" .name }}
-            <a href="{{.url}}" role="button" class="btn btn-sm lg:btn-md border-none bg-neutral fill-neutral-content" target="_blank" rel="me">
+            <a href="{{.url}}" role="button" class="btn btn-sm lg:btn-md btn-outline fill-neutral-content" target="_blank" rel="me">
                 {{ if templates.Exists ( printf "partials/%s" $iconPath ) }}
                 {{ partialCached $iconPath . }}
                 {{ else }}

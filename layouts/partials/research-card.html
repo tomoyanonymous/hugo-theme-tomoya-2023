@@ -6,7 +6,7 @@
     {{$thum = .Resources.GetMatch .Params.ogpimage}}
     {{end}}
     {{if and (ne $thum "") (ne $thum nil) }}
-    <figure style="background-color:{{index $thum.Colors 0}};"><img src=" {{($thum.Resize " 600x webp" ).Permalink}}"
+    <figure style="background-color:rgb(from {{index $thum.Colors 0}} calc(r*0.28) calc(g*0.28) calc(b*0.28));"><img src=" {{($thum.Resize " 600x webp" ).Permalink}}"
             alt="" class="max-w-full max-h-full"></figure>
     {{end}}
 

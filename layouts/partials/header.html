@@ -1,13 +1,12 @@
-<div class="navbar bg-base-100 p-10">
-    <div class="flex-1">
-        <a href="{{.Site.BaseURL | absLangURL}}" class="btn btn-ghost rounded-none p-0">
-            <div class="flex flex-col items-start normal-case text-primary">
+<div class="navbar bg-base-100 px-10">
+      <div class="flex-1">
+        <a href="{{.Site.BaseURL | absLangURL}}" class="gap-0 h-20 btn btn-ghost flex-col items-start normal-case text-primary">
                 <span>Matsuura Tomoya</span>
                 <span>マツウラトモヤ</span>
                 <span>松浦知也</span>
-            </div>
         </a>
     </div>
+
     <div class="flex-none">
         <ul class="menu hidden md:visible md:menu-horizontal px-1 text-primary">
             {{ $currentPage := . }}
@@ -25,7 +24,7 @@
         </ul>
 
         <details class="dropdown visible md:hidden px-1">
-            <summary class="btn">
+            <summary class="btn btn-outline">
                 Menu
             </summary>
             <ul class="dropdown-content menu z-25 p-2 rounded-box bg-neutral text-neutral-content">
