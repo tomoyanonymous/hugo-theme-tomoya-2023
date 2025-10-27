@@ -55,7 +55,7 @@
 <div class="w-[65ch] lg:prose-xl card lg:card-side shadow-lg">
   {{ with .Site.GetPage "/about" }}
   {{if .Params.shortprofile}}
-  {{ $icon := ((.Resources.GetMatch "profile2.jpg").Fill "400x400 q90 webp") }}
+  {{ $icon := ((.Resources.GetMatch "profile.jpg").Fill "400x400 q90 webp") }}
   <figure class="not-prose lg:mb-0">
     <img src="{{$icon.RelPermalink}}" class="not-prose" alt="">
   </figure>
