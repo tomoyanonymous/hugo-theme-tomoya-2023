@@ -9,6 +9,7 @@
     {{- partial "meta.html" . -}}
     <title>{{with .Title}}{{ . }} - {{end}}{{ .Site.Title }}</title>
     {{ end }}
+    {{ partialCached "inject/head.html" .}}
 </head>
 <body>
   <div class="bg-base-100 text-base-content">
