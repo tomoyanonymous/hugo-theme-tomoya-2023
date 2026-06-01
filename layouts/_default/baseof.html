@@ -2,7 +2,7 @@
 <html lang="{{.Lang}}" prefix="og: http://ogp.me/ns#">
   <head>
     {{ block "head" .}}
-    {{- partialCached "head_default.html" . -}}
+    {{- partial "head_default.html" . -}}
     {{ if .Param "math" }}
       {{ partialCached "math.html" . }}
     {{ end }}

@@ -1,5 +1,5 @@
 {{ define "head" }}
-{{- partialCached "head_default.html" . -}}
+{{- partial "head_default.html" . -}}
 {{- partial "meta.html" . -}}
 {{- partial "research-meta.html" . -}}
 {{ if .Param "math" }}

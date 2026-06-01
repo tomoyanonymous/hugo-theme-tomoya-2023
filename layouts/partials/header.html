@@ -54,7 +54,7 @@
         {{if gt (len .Translations) 0 }} 
         <ul tabindex="0" class="menu menu-sm gap-1 dropdown-content rounded-box bg-base-200 overflow-y-auto ">
             {{ range .Translations }}
-            <li><a href="{{ .Permalink }}" class="btn btn-sm">{{ .Language.LanguageName }}</a></li>
+            <li><a href="{{ .Permalink }}" class="btn btn-sm">{{ .Language.Label }}</a></li>
             {{ end }}
         </ul>
         {{end}}
